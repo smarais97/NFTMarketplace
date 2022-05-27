@@ -1,7 +1,8 @@
 import { useNavigation } from '@react-navigation/native'
 import { View, Image, Text } from 'react-native'
 import { Colors, Sizes, Shadows, assets } from '../constants';
-import { CircleButton } from './Button';
+import { CircleButton, RectButton } from './Button';
+import { SubInfo, ETHPrice, NFTTitle, EthPrice } from './SubInfo';
 
 export default function NFTCard({ data }) {
     const navigation = useNavigation();
@@ -30,7 +31,30 @@ export default function NFTCard({ data }) {
                     }} />
                 <CircleButton imgUrl={assets.heart} right={10} top={10} />
             </View>
-            <Text>NFTCard</Text>
+            <SubInfo />
+            <View style={{
+                width: '100%',
+                padding: Sizes.font
+            }}>
+                <NFTTitle
+                    title={data.name}
+                    subTitle={data.creator}
+                    titleSize={Sizes.large}
+                    subTitleSize={Sizes.small} />
+
+                <View style={{
+                    marginTop: Sizes.font,
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    alignItems: 'center'
+                }}>
+                    <EthPrice price={data.price} />
+                    <RectButton
+                        minWidth={120}
+                        fontSize={Sizes.font}
+                        handlePress={() => navigation.navigate('Details', { data })} />
+                </View>
+            </View>
         </View>
     )
 }
