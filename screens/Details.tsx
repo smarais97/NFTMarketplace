@@ -1,3 +1,4 @@
+/* eslint-disable import/named */
 /* eslint-disable no-unused-vars */
 import {
   View, Text, SafeAreaView, Image, StatusBar, FlatList,
@@ -6,10 +7,16 @@ import {
   Colors, Fonts, Shadows, Sizes, assets,
 } from '../constants';
 import {
-  CircleButton, RectButton, SubInfo, FocusedStatusBar, DetailsDescription, DetailsBid,
+  CircleButton,
+  RectButton,
+  SubInfo,
+  FocusedStatusBar,
+  DetailsDesc,
+  DetailsBid,
 } from '../components';
 
-function Details() {
+function Details({ route, navigation }:{route: any; navigation: any;}) {
+  console.log(route);
   return (
     <Text>Details</Text>
   );

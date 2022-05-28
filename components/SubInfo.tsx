@@ -1,4 +1,4 @@
-import { View, Text, Image } from 'react-native'
+import { View, Text, Image, ImageSourcePropType } from 'react-native'
 import React from 'react'
 import { Sizes, Fonts, Colors, Shadows, assets } from '../constants'
 
@@ -7,6 +7,11 @@ export const NFTTitle = ({
     subTitle,
     titleSize,
     subTitleSize,
+}: {
+    title: string;
+    subTitle: string;
+    titleSize: number;
+    subTitleSize: number;
 }) => {
     return (
         <View>
@@ -30,7 +35,7 @@ export const NFTTitle = ({
     )
 }
 
-export const EthPrice = ({ price }) => {
+export const EthPrice = ({ price }: { price: string }) => {
     return (
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
             <Image
@@ -53,7 +58,7 @@ export const EthPrice = ({ price }) => {
     )
 }
 
-export const ImageCmp = ({ imgUrl, index }) => {
+export const ImageCmp = ({ imgUrl, index }: { imgUrl: ImageSourcePropType; index: number;}) => {
     return (
         <Image
             source={imgUrl}

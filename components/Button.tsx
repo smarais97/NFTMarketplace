@@ -1,7 +1,18 @@
-import { TouchableOpacity, View, Text, Image } from 'react-native'
+import { TouchableOpacity, View, Text, Image, StyleProp, ViewStyle, RecursiveArray, Falsy, RegisteredStyle, ImageSourcePropType } from 'react-native'
 import { Colors, Fonts, Shadows, Sizes } from '../constants'
 
-export function CircleButton({ imgUrl, handlePress, ...props }) {
+export function CircleButton(
+    {
+        imgUrl,
+        handlePress,
+        right,
+        top }:
+        {
+            imgUrl: ImageSourcePropType;
+            handlePress?: () => void;
+            right: number;
+            top: number;
+        }) {
     return (
         <TouchableOpacity
             style={{
@@ -13,7 +24,8 @@ export function CircleButton({ imgUrl, handlePress, ...props }) {
                 alignItems: 'center',
                 justifyContent: 'center',
                 ...Shadows.light,
-                ...props
+                right: right,
+                top: top,
             }} onPress={handlePress}>
             <Image source={imgUrl} resizeMode="contain" style={{ width: 24, height: 24 }} />
         </TouchableOpacity>
@@ -21,14 +33,25 @@ export function CircleButton({ imgUrl, handlePress, ...props }) {
 }
 
 
-export function RectButton({ minWidth, fontSize, handlePress, ...props }) {
+export function RectButton(
+    {
+        minWidth,
+        fontSize,
+        handlePress,
+        ...props
+    }:
+        {
+            minWidth?: string | number;
+            fontSize: number;
+            handlePress: () => void;
+        }) {
     return (
         <TouchableOpacity
             style={{
                 backgroundColor: Colors.primary,
                 borderRadius: Sizes.extraLarge,
                 minWidth: minWidth,
-                fontSize: fontSize,
+                // fontSize: fontSize,
                 padding: Sizes.small,
                 ...props
             }} onPress={handlePress}>
