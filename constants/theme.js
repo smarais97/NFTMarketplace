@@ -1,9 +1,9 @@
 export const Colors = {
-  primary: "#001F2D",
-  secondary: "#4D626C",
+  primary: '#001F2D',
+  secondary: '#4D626C',
 
-  white: "#FFF",
-  gray: "#74858C",
+  white: '#FFF',
+  gray: '#74858C',
 };
 
 export const Sizes = {
@@ -16,11 +16,11 @@ export const Sizes = {
 };
 
 export const Fonts = {
-  bold: "InterBold",
-  semiBold: "InterSemiBold",
-  medium: "InterMedium",
-  regular: "InterRegular",
-  light: "InterLight",
+  bold: 'InterBold',
+  semiBold: 'InterSemiBold',
+  medium: 'InterMedium',
+  regular: 'InterRegular',
+  light: 'InterLight',
 };
 
 export const Shadows = {
