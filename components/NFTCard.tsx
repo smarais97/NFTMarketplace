@@ -7,7 +7,6 @@ import { SubInfo, NFTTitle, EthPrice } from './SubInfo';
 
 export default function NFTCard({ data }: { data: any }) {
     const navigation = useNavigation();
-    console.log(data);
     return (
         <View style={{
             backgroundColor: Colors.white,

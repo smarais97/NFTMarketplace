@@ -6,12 +6,14 @@ export function CircleButton(
         imgUrl,
         handlePress,
         right,
+        left,
         top }:
         {
             imgUrl: ImageSourcePropType;
             handlePress?: () => void;
-            right: number;
-            top: number;
+            right?: number;
+            left?: number;
+            top?: number;
         }) {
     return (
         <TouchableOpacity
@@ -25,6 +27,7 @@ export function CircleButton(
                 justifyContent: 'center',
                 ...Shadows.light,
                 right: right,
+                left: left,
                 top: top,
             }} onPress={handlePress}>
             <Image source={imgUrl} resizeMode="contain" style={{ width: 24, height: 24 }} />
@@ -43,7 +46,7 @@ export function RectButton(
         {
             minWidth?: string | number;
             fontSize: number;
-            handlePress: () => void;
+            handlePress?: () => void;
         }) {
     return (
         <TouchableOpacity
