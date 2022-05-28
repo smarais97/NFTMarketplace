@@ -6,7 +6,7 @@ import {
   Colors, Fonts, Sizes, assets,
 } from '../constants';
 
-export default function HomeHeader() {
+export default function HomeHeader({ onSearch }: { onSearch: (value: string) => void }) {
   return (
     <View style={{
       backgroundColor: Colors.primary,
@@ -107,7 +107,7 @@ export default function HomeHeader() {
             style={{
               flex: 1,
             }}
-            onChangeText={() => {}}
+            onChangeText={onSearch}
           />
         </View>
       </View>
