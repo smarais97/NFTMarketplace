@@ -1,5 +1,3 @@
-/* eslint-disable import/named */
-/* eslint-disable no-unused-vars */
 import {
   View, Text, SafeAreaView, Image, StatusBar, FlatList,
 } from 'react-native';
@@ -14,6 +12,7 @@ import {
   DetailsDesc,
   DetailsBid,
 } from '../components';
+import { Bid } from '../interfaces/data';
 
 const DetailsHeader = ({ data, navigation }: { data: any; navigation: any; }) => (
   <View style={{
@@ -42,9 +41,8 @@ const DetailsHeader = ({ data, navigation }: { data: any; navigation: any; }) =>
   </View>
 );
 
-function Details({ route, navigation }: { route: any; navigation: any; }) {
+function Details({ route, navigation }: any ) {
   const { data } = route.params;
-  console.log(data);
   return (
     <SafeAreaView style={{
       flex: 1,
@@ -68,7 +66,7 @@ function Details({ route, navigation }: { route: any; navigation: any; }) {
       </View>
       <FlatList
         data={data.bids}
-        renderItem={({ item }) => <DetailsBid bid={item} />}
+        renderItem={({ item }) => <DetailsBid bid={item as Bid} />}
         keyExtractor={(item) => item.id}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: Sizes.extraLarge * 3 }}

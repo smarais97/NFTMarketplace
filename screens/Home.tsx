@@ -3,9 +3,10 @@ import { View, SafeAreaView, FlatList } from 'react-native';
 
 import { Colors, NFTData } from '../constants';
 import { NFTCard, HomeHeader, FocusedStatusBar } from '../components';
+import { Nft } from '../interfaces/data';
 
 function Home() {
-  const [nftData, setNftData] = useState<any>(NFTData);
+  const [nftData, setNftData] = useState<Nft[]>(NFTData);
 
   const handleSearch = (value: string) => {
     if (!value.length) {
