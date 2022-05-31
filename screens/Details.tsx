@@ -13,36 +13,43 @@ import {
   DetailsBid,
 } from '../components';
 import { Bid } from '../interfaces/data';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../types/globalTypes';
 
-const DetailsHeader = ({ data, navigation }: { data: any; navigation: any; }) => (
-  <View style={{
-    width: '100%',
-    height: 373
-  }}>
-    <Image
-      source={data.image}
-      resizeMode="cover"
-      style={{
-        width: '100%',
-        height: '100%'
-      }} />
+type Props = NativeStackScreenProps<RootStackParamList, 'Details'>;
 
-    <CircleButton
-      imgUrl={assets.left}
-      handlePress={() => navigation.goBack()}
-      left={15}
-      top={StatusBar.currentHeight}
-    />
-    <CircleButton
-      imgUrl={assets.heart}
-      right={15}
-      top={StatusBar.currentHeight}
-    />
-  </View>
-);
+const DetailsHeader = ({ route, navigation }: Props) => {
+  const nftData = route.params.data;
 
-function Details({ route, navigation }: any ) {
-  const { data } = route.params;
+  return (
+    <View style={{
+      width: '100%',
+      height: 373
+    }}>
+      <Image
+        source={nftData.image}
+        resizeMode="cover"
+        style={{
+          width: '100%',
+          height: '100%'
+        }} />
+
+      <CircleButton
+        imgUrl={assets.left}
+        handlePress={() => navigation.goBack()}
+        left={15}
+        top={StatusBar.currentHeight}
+      />
+      <CircleButton
+        imgUrl={assets.heart}
+        right={15}
+        top={StatusBar.currentHeight}
+      />
+    </View>);
+};
+
+function Details({ route, navigation }: Props) {
+  const nftData = route.params.data;
   return (
     <SafeAreaView style={{
       flex: 1,
@@ -65,21 +72,21 @@ function Details({ route, navigation }: any ) {
         <RectButton minWidth={170} fontSize={Sizes.large} {...Shadows.dark} />
       </View>
       <FlatList
-        data={data.bids}
-        renderItem={({ item }) => <DetailsBid bid={item as Bid} />}
+        data={nftData.bids}
+        renderItem={({ item }) => <DetailsBid bid={item} />}
         keyExtractor={(item) => item.id}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: Sizes.extraLarge * 3 }}
         ListHeaderComponent={() => (
           <>
-            <DetailsHeader data={data} navigation={navigation} />
+            <DetailsHeader route={route} navigation={navigation} />
             <SubInfo />
             <View style={{
               padding: Sizes.font
             }}>
-              <DetailsDesc data={data} />
+              <DetailsDesc data={nftData} />
 
-              {data.bids.length > 0 && (
+              {nftData.bids.length > 0 && (
                 <Text style={{
                   fontSize: Sizes.font,
                   fontFamily: Fonts.semiBold,

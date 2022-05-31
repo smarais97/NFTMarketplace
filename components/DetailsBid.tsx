@@ -4,8 +4,10 @@ import { EthPrice } from './SubInfo';
 import {
   Colors, Fonts, Sizes
 } from '../constants';
+import { Bid } from '../interfaces/data';
+import dayjs from 'dayjs';
 
-export default function DetailsBid({ bid }: { bid: any }) {
+export default function DetailsBid({ bid }: { bid: Bid }) {
   return (
     <View style={{
       width: '100%',
@@ -33,10 +35,10 @@ export default function DetailsBid({ bid }: { bid: any }) {
           color: Colors.secondary,
           marginTop: 3,
         }}>
-          {bid.date}
+          {dayjs(bid.date).toString()}
         </Text>
       </View>
-      <EthPrice price={bid.price} />
+      <EthPrice price={bid.price.toString()} />
     </View>
   );
 }
