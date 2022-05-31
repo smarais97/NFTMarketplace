@@ -1,5 +1,5 @@
 import {
-  View, Text, SafeAreaView, Image, StatusBar, FlatList,
+  View, Text, SafeAreaView, Image, StatusBar, FlatList, StyleSheet
 } from 'react-native';
 import {
   Colors, Fonts, Shadows, Sizes, assets,
@@ -12,7 +12,6 @@ import {
   DetailsDesc,
   DetailsBid,
 } from '../components';
-import { Bid } from '../interfaces/data';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types/globalTypes';
 
@@ -51,24 +50,11 @@ const DetailsHeader = ({ route, navigation }: Props) => {
 function Details({ route, navigation }: Props) {
   const nftData = route.params.data;
   return (
-    <SafeAreaView style={{
-      flex: 1,
-    }}>
+    <SafeAreaView style={styles.flex}>
       <FocusedStatusBar
         barStyle="dark-content"
-        backgroundColor="transparent"
-        transLucent={true}
       />
-      <View style={{
-        width: '100%',
-        position: 'absolute',
-        bottom: 0,
-        paddingVertical: Sizes.font,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'rgba(255,255,255,0.5)',
-        zIndex: 1,
-      }}>
+      <View style={styles.rectButtonContainer}>
         <RectButton minWidth={170} fontSize={Sizes.large} {...Shadows.dark} />
       </View>
       <FlatList
@@ -81,17 +67,10 @@ function Details({ route, navigation }: Props) {
           <>
             <DetailsHeader route={route} navigation={navigation} />
             <SubInfo />
-            <View style={{
-              padding: Sizes.font
-            }}>
+            <View style={styles.currentBidsContainer}>
               <DetailsDesc data={nftData} />
-
               {nftData.bids.length > 0 && (
-                <Text style={{
-                  fontSize: Sizes.font,
-                  fontFamily: Fonts.semiBold,
-                  color: Colors.primary
-                }}>
+                <Text style={styles.currentBids}>
                   Current Bids
                 </Text>
               )}
@@ -102,5 +81,29 @@ function Details({ route, navigation }: Props) {
     </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  flex: {
+    flex: 1,
+  },
+  rectButtonContainer: {
+    width: '100%',
+    position: 'absolute',
+    bottom: 0,
+    paddingVertical: Sizes.font,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(255,255,255,0.5)',
+    zIndex: 1,
+  },
+  currentBidsContainer: {
+    padding: Sizes.font
+  },
+  currentBids: {
+    fontSize: Sizes.font,
+    fontFamily: Fonts.semiBold,
+    color: Colors.primary
+  }
+});
 
 export default Details;
