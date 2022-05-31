@@ -1,4 +1,4 @@
-import { TouchableOpacity, View, Text, Image, StyleProp, ViewStyle, RecursiveArray, Falsy, RegisteredStyle, ImageSourcePropType } from 'react-native'
+import { TouchableOpacity, Text, Image, ImageSourcePropType } from 'react-native'
 import { Colors, Fonts, Shadows, Sizes } from '../constants'
 
 export function CircleButton(

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
 import { EthPrice, NFTTitle } from './SubInfo';
 import {
@@ -12,12 +12,7 @@ export default function DetailsDesc({ data }: { data: any; }) {
 
   return (
     <>
-      <View style={{
-        width: '100%',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center'
-      }}>
+      <View style={styles.titleContainer}>
         <NFTTitle
           title={data.name}
           subTitle={data.creator}
@@ -26,33 +21,16 @@ export default function DetailsDesc({ data }: { data: any; }) {
 
         <EthPrice price={data.price} />
       </View>
-      <View style={{
-        marginVertical: Sizes.extraLarge * 1.5
-      }}>
-        <Text style={{
-          fontSize: Sizes.font,
-          fontFamily: Fonts.semiBold,
-          color: Colors.primary,
-        }}>
+      <View style={styles.textContainer}>
+        <Text style={styles.description}>
           Description
         </Text>
-        <View style={{
-          marginTop: Sizes.base
-        }}>
-          <Text style={{
-            fontSize: Sizes.small,
-            fontFamily: Fonts.regular,
-            color: Colors.secondary,
-            lineHeight: Sizes.large,
-          }}>
+        <View style={styles.descriptionContainer}>
+          <Text style={styles.textContent}>
             {text}
             {!readMore && '...'}
           </Text>
-          <Text style={{
-            fontSize: Sizes.small,
-            fontFamily: Fonts.semiBold,
-            color: Colors.primary,
-          }}
+          <Text style={styles.readMore}
             onPress={() => {
               if (!readMore) {
                 setText(data.description);
@@ -69,3 +47,34 @@ export default function DetailsDesc({ data }: { data: any; }) {
     </>
   );
 }
+
+const styles = StyleSheet.create({
+  titleContainer: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
+  textContainer: {
+    marginVertical: Sizes.extraLarge * 1.5
+  },
+  description: {
+    fontSize: Sizes.font,
+    fontFamily: Fonts.semiBold,
+    color: Colors.primary,
+  },
+  descriptionContainer: {
+    marginTop: Sizes.base
+  },
+  textContent: {
+    fontSize: Sizes.small,
+    fontFamily: Fonts.regular,
+    color: Colors.secondary,
+    lineHeight: Sizes.large,
+  },
+  readMore: {
+    fontSize: Sizes.small,
+    fontFamily: Fonts.semiBold,
+    color: Colors.primary,
+  }
+});
